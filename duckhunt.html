@@ -51,8 +51,8 @@
 
       .dog {
         position: absolute;
-        bottom: 30px;
-        left: 10px;
+        bottom: 67px;
+        left: 15px;
         width: 120px;
         height: 110px;
         background-image: url(img/sprite.png);
@@ -60,7 +60,9 @@
         animation:
           dogwalk 0.7s steps(5) 0s 5 normal none,
           dogmove 3.5s linear forwards,
-          dogsniff 0.5s steps(2) 3.5s 5;
+          dogsniff 0.5s steps(2) 3.5s 5,
+          dogjump 1.5s steps(3) 6s none,
+          doglaugh 0.3s steps(2) 7.5s 10 none;
       }
 
       @keyframes dogwalk {
@@ -90,43 +92,266 @@
         }
       }
 
-      .duck {
+      @keyframes dogjump {
+        from {
+          background-position: 0 -110px;
+        }
+        to {
+          background-position: -360px -110px;
+        }
+      }
+
+      @keyframes doglaugh {
+        from {
+          background-position: -360px -110px;
+        }
+        to {
+          background-position: -600px -110px;
+        }
+      }
+
+      .duck1 {
         position: absolute;
         top: 30px;
-        left: 10px;
+        left: 0px;
         width: 80px;
         height: 80px;
         background-image: url(img/sprite.png);
         background-position: 0px -220px;
       }
 
-      .duckflies {
-        animation: fly 3s linear forwards;
+      .duck2 {
+        position: absolute;
+        top: 30px;
+        left: -80px;
+        width: 80px;
+        height: 80px;
+        background-image: url(img/sprite.png);
+        background-position: -260px -220px;
       }
 
-      @keyframes fly {
+      .duck3 {
+        position: absolute;
+        top: 30px;
+        left: -80px;
+        width: 80px;
+        height: 80px;
+        background-image: url(img/sprite.png);
+        background-position: -520px -220px;
+      }
+
+      .duckflies3 {
+        animation:
+          flyforward3 10s linear forwards,
+          flapforward3 0.4s steps(3) 25;
+      }
+
+      .duckleave3 {
+        animation:
+          flyaway3 1.5s linear forwards,
+          flapaway3 0.3s steps(3) 5;
+      }
+
+      .duckflies2 {
+        animation:
+          flyforward2 10s linear forwards,
+          flapforward2 0.4s steps(3) 25;
+      }
+
+      .duckleave2 {
+        animation:
+          flyaway2 1.5s linear forwards,
+          flapaway2 0.3s steps(3) 5;
+      }
+
+      .duckflies1 {
+        animation:
+          flyforward1 10s linear forwards,
+          flapforward 0.4s steps(3) 25;
+      }
+
+      .duckleave1 {
+        animation:
+          flyaway1 1.5s linear forwards,
+          flapaway 0.3s steps(3) 5;
+      }
+
+      .duckhit1 {
+        animation:
+          spin1 0.4s steps(2) forwards,
+          fall1 3s linear 0.4s forwards;
+      }
+
+      @keyframes fall1 {
+        100% {
+          top: 300px;
+        }
+      }
+
+      @keyframes spin1 {
+        from {
+          background-position: 0px -460px;
+        }
+        to {
+          background-position: -160px -460px;
+        }
+      }
+
+      @keyframes flapaway {
+        from {
+          background-position: 0px -300px;
+        }
+        to {
+          background-position: -240px -300px;
+        }
+      }
+
+      @keyframes flyaway1 {
+        from {
+          top: 100px;
+          left: 550px;
+        }
+        to {
+          top: -80px;
+          left: 800px;
+        }
+      }
+
+      @keyframes flyforward1 {
         0% {
           top: 30px;
-          left: 10px;
+          left: -80px;
         }
         25% {
-          top: 60px;
-          left: 30px;
+          top: 100px;
+          left: 100px;
         }
         50% {
           top: 30px;
-          left: 90px;
+          left: 250px;
         }
         75% {
-          top: 40px;
-          left: 110px;
+          top: 160px;
+          left: 400px;
         }
         100% {
-          top: 10px;
-          left: 140px;
+          top: 100px;
+          left: 550px;
         }
       }
 
+      @keyframes flapforward {
+        from {
+          background-position: 0px -220px;
+        }
+        to {
+          background-position: -240px -220px;
+        }
+      }
+
+      @keyframes flapaway2 {
+        from {
+          background-position: -260px -300px;
+        }
+        to {
+          background-position: -500px -300px;
+        }
+      }
+
+      @keyframes flyaway2 {
+        from {
+          top: 140px;
+          left: 500px;
+        }
+        to {
+          top: -80px;
+          left: 800px;
+        }
+      }
+
+      @keyframes flyforward2 {
+        0% {
+          top: 30px;
+          left: -80px;
+        }
+        25% {
+          top: 200px;
+          left: 80px;
+        }
+        50% {
+          top: 60px;
+          left: 200px;
+        }
+        75% {
+          top: 100px;
+          left: 400px;
+        }
+        100% {
+          top: 140px;
+          left: 500px;
+        }
+      }
+
+      @keyframes flapforward2 {
+        from {
+          background-position: -260px -220px;
+        }
+        to {
+          background-position: -500px -220px;
+        }
+      }
+
+      @keyframes flapaway3 {
+        from {
+          background-position: -520px -300px;
+        }
+        to {
+          background-position: -742px -300px;
+        }
+      }
+
+      @keyframes flyaway3 {
+        from {
+          top: 90px;
+          left: 600px;
+        }
+        to {
+          top: -80px;
+          left: 800px;
+        }
+      }
+
+      @keyframes flyforward3 {
+        0% {
+          top: 30px;
+          left: -80px;
+        }
+        25% {
+          top: 100px;
+          left: 130px;
+        }
+        50% {
+          top: 250px;
+          left: 240px;
+        }
+        75% {
+          top: 50px;
+          left: 400px;
+        }
+        100% {
+          top: 90px;
+          left: 600px;
+        }
+      }
+
+      @keyframes flapforward3 {
+        from {
+          background-position: -520px -220px;
+        }
+        to {
+          background-position: -742px -220px;
+        }
+      }
       /* Tätä luokkaa voi testata selaimen konsolista. */
       .paused {
         animation-play-state: paused;
@@ -150,7 +375,9 @@
 
       <div class="stage">
         <div class="dog"></div>
-        <div class="duck"></div>
+        <div class="duck1"></div>
+        <div class="duck2"></div>
+        <div class="duck3"></div>
       </div>
 
       <h2>Animation events</h2>
@@ -159,7 +386,9 @@
 
     <script>
       const dog = document.querySelector(".dog");
-      const duck = document.querySelector(".duck");
+      const duck1 = document.querySelector(".duck1");
+      const duck2 = document.querySelector(".duck2");
+      const duck3 = document.querySelector(".duck3");
       const stage = document.querySelector(".stage");
       const output = document.querySelector("#output");
 
@@ -186,14 +415,80 @@
 
           if (
             event.type === "animationend" &&
-            event.animationName === "dogsniff"
+            event.animationName === "doglaugh"
           ) {
-            duck.classList.add("duckflies");
+            duck1.classList.toggle("duckflies1");
           }
 
           // HUOM: animationend laukeaa jokaisesta päättyvästä animaatiosta.
           // Käynnistetään ankka vasta koko hyppysarjan päätyttyä.
         });
+
+        duck1.addEventListener(eventType, (event) => {
+          addLog(
+            `${event.animationName}: ${event.type} ` +
+              `(${event.elapsedTime.toFixed(1)} s)`,
+          );
+
+          if (
+            event.type === "animationend" &&
+            event.animationName === "flyforward1"
+          ) {
+            duck1.classList.toggle("duckflies1");
+            duck1.classList.add("duckleave1");
+          }
+
+          if (
+            event.type === "animationend" &&
+            event.animationName === "flyaway1"
+          ) {
+            duck2.classList.toggle("duckflies2");
+          }
+        });
+
+        duck2.addEventListener(eventType, (event) => {
+          addLog(
+            `${event.animationName}: ${event.type} ` +
+              `(${event.elapsedTime.toFixed(1)} s)`,
+          );
+
+          if (
+            event.type === "animationend" &&
+            event.animationName === "flyforward2"
+          ) {
+            duck2.classList.toggle("duckflies2");
+            duck2.classList.add("duckleave2");
+          }
+
+          if (
+            event.type === "animationend" &&
+            event.animationName === "flyaway2"
+          ) {
+            duck3.classList.toggle("duckflies3");
+          }
+        });
+
+        duck3.addEventListener(eventType, (event) => {
+          addLog(
+            `${event.animationName}: ${event.type} ` +
+              `(${event.elapsedTime.toFixed(1)} s)`,
+          );
+
+          if (
+            event.type === "animationend" &&
+            event.animationName === "flyforward3"
+          ) {
+            duck3.classList.toggle("duckflies3");
+            duck3.classList.add("duckleave3");
+          }
+        });
+      });
+
+      duck1.addEventListener("click", (event) => {
+        duck1.classList.add("paused");
+        duck1.classList.remove("duckflies1");
+        duck1.classList.remove("paused");
+        duck1.classList.toggle("duckhit1");
       });
 
       // Osuma: jäädytetään ankan tämänhetkinen sijainti ennen
