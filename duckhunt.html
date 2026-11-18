@@ -16,6 +16,7 @@
       /* 1. Sivun perusmuotoilu */
       body {
         min-height: 100vh;
+        min-width: 1000px;
         font-family: "Press Start 2P", cursive;
         line-height: 1.7;
       }
@@ -62,6 +63,7 @@
           dogmove 3.5s linear forwards,
           dogsniff 0.5s steps(2) 3.5s 5,
           dogjump 1.5s steps(3) 6s none,
+          dogjump2 1.5s linear 6s,
           doglaugh 0.3s steps(2) 7.5s 10 none;
       }
 
@@ -101,6 +103,26 @@
         }
       }
 
+      @keyframes dogjump2 {
+       0% {
+        transform: translateY(0);
+       }
+       40% {
+        transform: translateY(0);
+       }
+       70% {
+        transform: translateY(-80px);
+      }
+       90% {
+        transform: translateY(-30px);
+        opacity: 1;
+      }
+       100% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      }
+
       @keyframes doglaugh {
         from {
           background-position: -360px -110px;
@@ -113,7 +135,7 @@
       .duck1 {
         position: absolute;
         top: 30px;
-        left: 0px;
+        left: -80px;
         width: 80px;
         height: 80px;
         background-image: url(img/sprite.png);
@@ -178,13 +200,55 @@
 
       .duckhit1 {
         animation:
-          spin1 0.4s steps(2) forwards,
-          fall1 3s linear 0.4s forwards;
+          spin1 0.6s steps(2),
+          fall1 1.5s linear 0.6s forwards;
+      }
+
+      .duckhit2 {
+        animation:
+          spin2 0.6s steps(2),
+          fall2 1.5s linear 0.6s forwards;
+      }
+
+      .duckhit3 {
+        animation:
+          spin3 0.6s steps(2),
+          fall3 1.5s linear 0.6s forwards;
       }
 
       @keyframes fall1 {
+        0% {
+          opacity: 1;
+          background-position: -80px -460px;
+        }
         100% {
           top: 300px;
+          opacity: 0;
+          background-position: -80px -460px;
+        }
+      }
+
+       @keyframes fall2 {
+        0% {
+          opacity: 1;
+          background-position: -340px -460px;
+        }
+        100% {
+          top: 300px;
+          opacity: 0;
+          background-position: -340px -460px;
+        }
+      }
+
+       @keyframes fall3 {
+        0% {
+          opacity: 1;
+          background-position: -600px -460px;
+        }
+        100% {
+          top: 300px;
+          opacity: 0;
+          background-position: -600px -460px;
         }
       }
 
@@ -194,6 +258,24 @@
         }
         to {
           background-position: -160px -460px;
+        }
+      }
+
+      @keyframes spin2 {
+        from {
+          background-position: -260px -460px;
+        }
+        to {
+          background-position: -420px -460px;
+        }
+      }
+
+      @keyframes spin3 {
+        from {
+          background-position: -520px -460px;
+        }
+        to {
+          background-position: -680px -460px;
         }
       }
 
@@ -356,6 +438,9 @@
       .paused {
         animation-play-state: paused;
       }
+      .hide {
+        visibility: hidden;
+      }
 
       /* Koiran animaatiot */
     </style>
@@ -417,6 +502,7 @@
             event.type === "animationend" &&
             event.animationName === "doglaugh"
           ) {
+            dog.classList.toggle("hide");
             duck1.classList.toggle("duckflies1");
           }
 
@@ -485,11 +571,61 @@
       });
 
       duck1.addEventListener("click", (event) => {
-        duck1.classList.add("paused");
+         if (!duck1.classList.contains("duckflies1")) {
+          return;
+        }
+
+        // Ankka palaa alkuun joten on lisättävä
+        const duckRect = duck1.getBoundingClientRect();
+        const stageRect = stage.getBoundingClientRect();
+
+        const left = duckRect.left - stageRect.left;
+        const top = duckRect.top - stageRect.top;
+
+        duck1.style.left = `${left}px`;
+        duck1.style.top = `${top}px`;
         duck1.classList.remove("duckflies1");
-        duck1.classList.remove("paused");
         duck1.classList.toggle("duckhit1");
+        duck2.classList.toggle("duckflies2");
       });
+
+      duck2.addEventListener("click", (event) => {
+         if (!duck2.classList.contains("duckflies2")) {
+          return;
+        }
+
+        // Ankka palaa alkuun joten on lisättävä
+        const duckRect = duck2.getBoundingClientRect();
+        const stageRect = stage.getBoundingClientRect();
+
+        const left = duckRect.left - stageRect.left;
+        const top = duckRect.top - stageRect.top;
+
+        duck2.style.left = `${left}px`;
+        duck2.style.top = `${top}px`;
+        duck2.classList.remove("duckflies2");
+        duck2.classList.toggle("duckhit2");
+        duck3.classList.toggle("duckflies3");
+      });
+
+      duck3.addEventListener("click", (event) => {
+         if (!duck3.classList.contains("duckflies3")) {
+          return;
+        }
+
+        // Ankka palaa alkuun joten on lisättävä
+        const duckRect = duck3.getBoundingClientRect();
+        const stageRect = stage.getBoundingClientRect();
+
+        const left = duckRect.left - stageRect.left;
+        const top = duckRect.top - stageRect.top;
+
+        duck3.style.left = `${left}px`;
+        duck3.style.top = `${top}px`;
+        duck3.classList.remove("duckflies3");
+        duck3.classList.toggle("duckhit3");
+      });
+      
 
       // Osuma: jäädytetään ankan tämänhetkinen sijainti ennen
       // lentämisluokan poistamista ja putoamisanimaation aloittamista.
